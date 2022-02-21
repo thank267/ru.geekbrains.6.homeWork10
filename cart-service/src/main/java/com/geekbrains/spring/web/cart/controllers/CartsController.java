@@ -3,7 +3,6 @@ package com.geekbrains.spring.web.cart.controllers;
 import com.geekbrains.spring.web.api.carts.CartDto;
 import com.geekbrains.spring.web.api.dto.StringResponse;
 import com.geekbrains.spring.web.cart.converters.CartConverter;
-import com.geekbrains.spring.web.cart.models.Cart;
 import com.geekbrains.spring.web.cart.services.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +25,8 @@ public class CartsController {
     }
 
     @GetMapping("/{uuid}/add/{productId}")
-    public void add(@RequestHeader(required = false) String username, @PathVariable String uuid, @PathVariable Long productId) {
-        cartService.addToCart(getCurrentCartUuid(username, uuid), productId);
+    public void add(@RequestHeader(required = false) String username, @PathVariable String uuid, @PathVariable Long productId) throws Exception {
+           cartService.addToCart(getCurrentCartUuid(username, uuid), productId);
     }
 
     @GetMapping("/{uuid}/decrement/{productId}")

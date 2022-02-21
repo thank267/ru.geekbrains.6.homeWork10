@@ -36,7 +36,7 @@ public class OrderService {
                     item.setQuantity(o.getQuantity());
                     item.setPricePerProduct(o.getPricePerProduct());
                     item.setPrice(o.getPrice());
-                    item.setProduct(productsService.findById(o.getProductId()).orElseThrow(() -> new ResourceNotFoundException("Product not found")));
+                    item.setProduct(productsService.findById(o.getProductId()).orElseThrow(() -> new ResourceNotFoundException("Невозможно найти продукт в базе, id: " + o.getProductId())));
                     return item;
                 }).collect(Collectors.toList());
         order.setItems(items);
